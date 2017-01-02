@@ -75,6 +75,9 @@
                                     <segment title="20%"/>
                                 </segments>
                                 <color key="tintColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="percentageChoose:" destination="BYZ-38-t0r" eventType="valueChanged" id="NYE-v8-abc"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>

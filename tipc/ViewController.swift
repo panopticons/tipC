@@ -30,8 +30,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var tip: UILabel!
     @IBOutlet weak var total: UILabel!
     
-    var tippercent : Double = 0.0
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -44,6 +42,8 @@ class ViewController: UIViewController {
         tBlueVal = 0.0
         
         percentSaved = -1.0
+        
+        bInput.becomeFirstResponder()
     }
     
     override func didReceiveMemoryWarning() {
@@ -62,20 +62,16 @@ class ViewController: UIViewController {
         totalOutB.textColor = UIColor(red: CGFloat(tRedVal), green: CGFloat(tGreenVal), blue: CGFloat(tBlueVal), alpha: 1)
         tipPerc.tintColor = UIColor(red: CGFloat(tRedVal), green: CGFloat(tGreenVal), blue: CGFloat(tBlueVal), alpha: 1)
         
-        tippercent = Double(defaults.float(forKey: "defPercent"))
+        percentSaved = Double(defaults.float(forKey: "defPercent"))
+    }
+    @IBAction func percentageChoose(_ sender: UISegmentedControl) {
+        
+        let tipP = [0.1, 0.15, 0.2]
+        percentSaved = tipP[tipPerc.selectedSegmentIndex]
     }
 
     @IBAction func calcTip(_: AnyObject) {
-        let tipP = [0.1, 0.15, 0.2]
         let totalB = Double(bInput.text!) ?? 0
-        
-        if percentSaved == -1.0
-        {
-            percentSaved = tipP[tipPerc.selectedSegmentIndex]
-        }
-        else{
-            percentSaved = tippercent
-        }
         
         let tip = totalB * percentSaved
         let total = totalB + tip
